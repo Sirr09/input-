@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qeydiyyat Formu | Premium Dizayn</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --input-focus: #6366f1;
+            --radius: 12px;
+            --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            color: var(--text-main);
+        }
+
+        .container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 800px;
+            padding: 40px;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header {
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: var(--text-muted);
+            font-size: 16px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-left: 4px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            background: white;
+            font-family: inherit;
+            font-size: 15px;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--input-focus);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .range-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        input[type="range"] {
+            flex-grow: 1;
+            accent-color: var(--primary);
+        }
+
+        .range-value {
+            min-width: 45px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 16px;
+        }
+
+        button {
+            padding: 14px 28px;
+            border-radius: var(--radius);
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            flex-grow: 2;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .btn-secondary {
+            background: #f1f5f9;
+            color: var(--text-main);
+            flex-grow: 1;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+        }
+
+        .profile-preview-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .profile-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-preview:hover {
+            transform: scale(1.05);
+            border-color: var(--primary);
+        }
+
+        .profile-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .profile-preview i {
+            font-size: 40px;
+            color: var(--text-muted);
+        }
+
+        .profile-preview .upload-hint {
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            color: white;
+            width: 100%;
+            font-size: 10px;
+            padding: 4px 0;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-preview:hover .upload-hint {
+            opacity: 1;
+        }
+
+        @media (max-width: 600px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+            .full-width {
+                grid-column: span 1;
+            }
+            .container {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="profile-preview-container">
+            <div class="profile-preview" onclick="document.getElementById('profile-pic').click()">
+                <img id="preview-img" src="" alt="Profile Preview">
+                <div id="placeholder-icon" style="font-size: 48px; color: #cbd5e1;">👤</div>
+                <div class="upload-hint">Şəkil seç</div>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1>Profil Məlumatları</h1>
+            <p>Xahiş edirik, aşağıdakı xanaları doldurun</p>
+        </div>
+
+        <form action="#" method="POST">
+            <!-- Standart: Ad və Soyad -->
+            <div class="form-group">
+                <label for="fname">Ad</label>
+                <input type="text" id="fname" name="fname" placeholder="Məs: Əli" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Soyad</label>
+                <input type="text" id="lname" name="lname" placeholder="Məs: Məmmədov" required>
+            </div>
+
+            <!-- Standart: Email və Telefon -->
+            <div class="form-group">
+                <label for="email">E-poçt Ünvanı</label>
+                <input type="email" id="email" name="email" placeholder="nümunə@mail.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Telefon</label>
+                <input type="tel" id="phone" name="phone" placeholder="+994 (--) --- -- --">
+            </div>
+
+            <!-- İstənilən: Yaş və Cinsiyyət -->
+            <div class="form-group">
+                <label for="age">Yaş</label>
+                <input type="number" id="age" name="age" min="1" max="120" placeholder="18">
+            </div>
+            <div class="form-group">
+                <label>Cinsiyyət</label>
+                <div class="gender-group">
+                    <label class="radio-option">
+                        <input type="radio" name="gender" value="male"> Kişi
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="gender" value="female"> Qadın
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="gender" value="other"> Digər
+                    </label>
+                </div>
+            </div>
+
+            <!-- İstənilən: Boy və Göz Rəngi -->
+            <div class="form-group">
+                <label for="height">Boy (sm)</label>
+                <div class="range-container">
+                    <input type="range" id="height" name="height" min="100" max="250" value="170" oninput="heightVal.innerText = this.value + ' sm'">
+                    <span id="heightVal" class="range-value">170 sm</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="eye-color">Göz Rəngi</label>
+                <select id="eye-color" name="eye-color">
+                    <option value="" disabled selected>Seçin</option>
+                    <option value="brown">Qəhvəyi</option>
+                    <option value="black">Qara</option>
+                    <option value="blue">Mavi</option>
+                    <option value="green">Yaşıl</option>
+                    <option value="hazel">Boz</option>
+                </select>
+            </div>
+
+            <!-- Standart: Doğum Tarixi və Şifrə -->
+            <div class="form-group">
+                <label for="birthdate">Doğum Tarixi</label>
+                <input type="date" id="birthdate" name="birthdate">
+            </div>
+            <div class="form-group">
+                <label for="password">Şifrə</label>
+                <input type="password" id="password" name="password" placeholder="••••••••" required>
+            </div>
+
+            <!-- Yeni: Təhsil Məlumatları -->
+            <div class="form-group">
+                <label for="education">Təhsil Səviyyəsi</label>
+                <select id="education" name="education">
+                    <option value="" disabled selected>Seçin</option>
+                    <option value="high-school">Orta təhsil</option>
+                    <option value="bachelor">Bakalavr</option>
+                    <option value="master">Magistr</option>
+                    <option value="phd">Doktorantura</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="education-place">Təhsil Aldığı Yer</label>
+                <input type="text" id="education-place" name="education-place" list="edu-list" placeholder="Məs: ADNSU, BDU və ya Div Academy">
+                <datalist id="edu-list">
+                    <!-- Universitetlər -->
+                    <option value="Bakı Dövlət Universiteti (BDU)">
+                    <option value="Azərbaycan Dövlət Neft və Sənaye Universiteti (ADNSU)">
+                    <option value="Azərbaycan Dövlət İqtisad Universiteti (UNEC)">
+                    <option value="ADA Universiteti">
+                    <option value="Azərbaycan Tibb Universiteti (ATU)">
+                    <option value="Azərbaycan Dillər Universiteti (ADU)">
+                    <option value="Bakı Mühəndislik Universiteti (BMU)">
+                    <option value="Azərbaycan Texniki Universiteti (AzTU)">
+                    <option value="Xəzər Universiteti">
+                    <option value="Bakı Ali Neft Məktəbi (BANM)">
+                    <option value="Azərbaycan Memarlıq və İnşaat Universiteti (AzMİU)">
+                    <option value="Azərbaycan Dövlət Pedaqoji Universiteti (ADPU)">
+                    <option value="Azərbaycan Dövlət Mədəniyyət və İncəsənət Universiteti (ADMİU)">
+                    <option value="Bakı Slavyan Universiteti (BSU)">
+                    <option value="Azərbaycan Turizm və Menecment Universiteti (ATMU)">
+                    <option value="Bakı Musiqi Akademiyası (BMA)">
+                    <option value="Azərbaycan Milli Konservatoriyası">
+                    <option value="Gəncə Dövlət Universiteti (GDU)">
+                    <option value="Naxçıvan Dövlət Universiteti (NDU)">
+                    <option value="Sumqayıt Dövlət Universiteti (SDU)">
+                    <option value="Mingəçevir Dövlət Universiteti (MDU)">
+                    <option value="Lənkəran Dövlət Universiteti (LDU)">
+                    <!-- Akademiyalar və IT Kursları -->
+                    <option value="Div Academy">
+                    <option value="Step IT Academy">
+                    <option value="Code Academy">
+                    <option value="Matrix Academy">
+                    <option value="Technest Təqaüd Proqramı">
+                    <option value="Pragmatech IT Academy">
+                    <!-- Kolleclər -->
+                    <option value="Bakı Dövlət Rabitə və Nəqliyyat Kolleci">
+                    <option value="Bakı Qidalanma Sənayesi Kolleci">
+                    <option value="Bakı Texniki Kolleci">
+                    <option value="Azərbaycan Dövlət İqtisad Universitetinin nəzdində Azərbaycan Maliyyə-İqtisad Kolleci">
+                </datalist>
+            </div>
+
+            <!-- Yeni: Daha Geniş Məlumat -->
+            <div class="form-group">
+                <label for="languages">Bildiyiniz Dillər</label>
+                <input type="text" id="languages" name="languages" list="language-list" placeholder="Məs: Azərbaycan, İngilis, Rus">
+                <datalist id="language-list">
+                    <option value="Abxaz dili">
+                    <option value="Afrikaans">
+                    <option value="Akan dili">
+                    <option value="Alban dili">
+                    <option value="Amhar dili">
+                    <option value="Alman dili">
+                    <option value="Azərbaycan dili">
+                    <option value="Aymara dili">
+                    <option value="Bask dili">
+                    <option value="Başqırd dili">
+                    <option value="Belarus dili">
+                    <option value="Benqal dili">
+                    <option value="Bihari dili">
+                    <option value="Bislama dili">
+                    <option value="Bosniya dili">
+                    <option value="Breton dili">
+                    <option value="Bolqar dili">
+                    <option value="Birma dili">
+                    <option value="Katalan dili">
+                    <option value="Çex dili">
+                    <option value="Çeçen dili">
+                    <option value="Çuvaş dili">
+                    <option value="Çin dili">
+                    <option value="Danimarka dili">
+                    <option value="Dari dili">
+                    <option value="Divehi dili">
+                    <option value="Dzongxa dili">
+                    <option value="Eston dili">
+                    <option value="Efiopiya dili">
+                    <option value="Ewe dili">
+                    <option value="Fars dili">
+                    <option value="Farer dili">
+                    <option value="Fici dili">
+                    <option value="Fin dili">
+                    <option value="Fransız dili">
+                    <option value="Fula dili">
+                    <option value="Qalisiya dili">
+                    <option value="Qanda dili">
+                    <option value="Gürcü dili">
+                    <option value="Yunan dili">
+                    <option value="Quarani dili">
+                    <option value="Qucarat dili">
+                    <option value="Haiti kreol dili">
+                    <option value="Hausa dili">
+                    <option value="İvrit dili">
+                    <option value="Herero dili">
+                    <option value="Hindi dili">
+                    <option value="Holland dili">
+                    <option value="Macar dili">
+                    <option value="İsland dili">
+                    <option value="İqbo dili">
+                    <option value="İndoneziya dili">
+                    <option value="İnterlinqua">
+                    <option value="İnuktitut dili">
+                    <option value="İnyupik dili">
+                    <option value="İrland dili">
+                    <option value="İtalyan dili">
+                    <option value="İspan dili">
+                    <option value="İngilis dili">
+                    <option value="Yapon dili">
+                    <option value="Yava dili">
+                    <option value="Kannada dili">
+                    <option value="Kanuri dili">
+                    <option value="Kəşmir dili">
+                    <option value="Qazax dili">
+                    <option value="Khmer dili">
+                    <option value="Kikuya dili">
+                    <option value="Kinyaruanda dili">
+                    <option value="Qırğız dili">
+                    <option value="Komi dili">
+                    <option value="Konqo dili">
+                    <option value="Koreya dili">
+                    <option value="Kürd dili">
+                    <option value="Lao dili">
+                    <option value="Latın dili">
+                    <option value="Latış dili">
+                    <option value="Limburq dili">
+                    <option value="Linqala dili">
+                    <option value="Litva dili">
+                    <option value="Luba-Katanga dili">
+                    <option value="Lüksemburq dili">
+                    <option value="Makedon dili">
+                    <option value="Malaqas dili">
+                    <option value="Malay dili">
+                    <option value="Malayalam dili">
+                    <option value="Malta dili">
+                    <option value="Maori dili">
+                    <option value="Maratxi dili">
+                    <option value="Marşall dili">
+                    <option value="Monqol dili">
+                    <option value="Nauru dili">
+                    <option value="Navaxo dili">
+                    <option value="Ndonga dili">
+                    <option value="Nepal dili">
+                    <option value="Norveç dili">
+                    <option value="Oksitan dili">
+                    <option value="Ociybve dili">
+                    <option value="Oromo dili">
+                    <option value="Osetin dili">
+                    <option value="Pali dili">
+                    <option value="Pəncab dili">
+                    <option value="Paşto dili">
+                    <option value="Polyak dili">
+                    <option value="Portuqal dili">
+                    <option value="Keçua dili">
+                    <option value="Rumın dili">
+                    <option value="Romanş dili">
+                    <option value="Rundi dili">
+                    <option value="Rus dili">
+                    <option value="Samoa dili">
+                    <option value="Sanqo dili">
+                    <option value="Sanskrit dili">
+                    <option value="Sardin dili">
+                    <option value="Şotland kelt dili">
+                    <option value="Serb dili">
+                    <option value="Şona dili">
+                    <option value="Sindhi dili">
+                    <option value="Sinhala dili">
+                    <option value="Slovak dili">
+                    <option value="Sloven dili">
+                    <option value="Somali dili">
+                    <option value="Soto dili">
+                    <option value="Sunda dili">
+                    <option value="Suahili dili">
+                    <option value="Svazi dili">
+                    <option value="İsveç dili">
+                    <option value="Taqaloq dili">
+                    <option value="Taiti dili">
+                    <option value="Tacik dili">
+                    <option value="Tamil dili">
+                    <option value="Tatar dili">
+                    <option value="Teluqu dili">
+                    <option value="Tay dili">
+                    <option value="Tibet dili">
+                    <option value="Tiqrinya dili">
+                    <option value="Tonqa dili">
+                    <option value="Tsonqa dili">
+                    <option value="Tsvana dili">
+                    <option value="Türk dili">
+                    <option value="Türkmən dili">
+                    <option value="Tvi dili">
+                    <option value="Uyğur dili">
+                    <option value="Ukrayna dili">
+                    <option value="Urdu dili">
+                    <option value="Özbək dili">
+                    <option value="Venda dili">
+                    <option value="Vyetnam dili">
+                    <option value="Vallon dili">
+                    <option value="Uels dili">
+                    <option value="Volof dili">
+                    <option value="Xosa dili">
+                    <option value="Yiddis dili">
+                    <option value="Yoruba dili">
+                    <option value="Zuan dili">
+                    <option value="Zulu dili">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label for="skills">Əsas Bacarıqlar</label>
+                <input type="text" id="skills" name="skills" list="skills-list" placeholder="Məs: HTML, CSS, JavaScript">
+                <datalist id="skills-list">
+                    <option value="HTML">
+                    <option value="CSS">
+                    <option value="JavaScript">
+                    <option value="TypeScript">
+                    <option value="Python">
+                    <option value="Java">
+                    <option value="C++">
+                    <option value="C#">
+                    <option value="PHP">
+                    <option value="Ruby">
+                    <option value="Swift">
+                    <option value="Kotlin">
+                    <option value="Go (Golang)">
+                    <option value="Rust">
+                    <option value="SQL">
+                    <option value="NoSQL">
+                    <option value="React">
+                    <option value="Angular">
+                    <option value="Vue.js">
+                    <option value="Node.js">
+                    <option value="Django">
+                    <option value="Laravel">
+                    <option value="Flutter">
+                    <option value="Dart">
+                    <option value="Unity">
+                    <option value="Unreal Engine">
+                    <option value="Docker">
+                    <option value="Kubernetes">
+                    <option value="Git / GitHub">
+                </datalist>
+            </div>
+
+            <!-- Yeni: Daha Geniş Məlumat (Davamı) -->
+            <!-- Yeni: Yaşayış Məlumatı -->
+            <div class="form-group">
+                <label for="district">Rayon / Şəhər</label>
+                <input type="text" id="district" name="district" list="district-list" placeholder="Məs: Yasamal və ya Şəmkir">
+                <datalist id="district-list">
+                    <!-- Şəhərlər -->
+                    <option value="Bakı">
+                    <option value="Gəncə">
+                    <option value="Sumqayıt">
+                    <option value="Mingəçevir">
+                    <option value="Şirvan">
+                    <option value="Lənkəran">
+                    <option value="Yevlax">
+                    <option value="Şəki">
+                    <option value="Naxçıvan">
+                    <option value="Xankəndi">
+                    <option value="Naftalan">
+                    <!-- Bakı Rayonları -->
+                    <option value="Yasamal">
+                    <option value="Nəsimi">
+                    <option value="Nərimanov">
+                    <option value="Səbail">
+                    <option value="Binəqədi">
+                    <option value="Nizami">
+                    <option value="Xətai">
+                    <option value="Sabunçu">
+                    <option value="Suraxanı">
+                    <option value="Qaradağ">
+                    <option value="Pirallahı">
+                    <option value="Xəzər">
+                    <!-- Bütün Rayonlar -->
+                    <option value="Abşeron">
+                    <option value="Ağcabədi">
+                    <option value="Ağdam">
+                    <option value="Ağdaş">
+                    <option value="Ağstafa">
+                    <option value="Ağsu">
+                    <option value="Astara">
+                    <option value="Babək">
+                    <option value="Balakən">
+                    <option value="Beyləqan">
+                    <option value="Bərdə">
+                    <option value="Biləsuvar">
+                    <option value="Cəbrayıl">
+                    <option value="Cəlilabad">
+                    <option value="Culfa">
+                    <option value="Daşkəsən">
+                    <option value="Füzuli">
+                    <option value="Gədəbəy">
+                    <option value="Goranboy">
+                    <option value="Göyçay">
+                    <option value="Göygöl">
+                    <option value="Hacıqabul">
+                    <option value="Xaçmaz">
+                    <option value="Xızı">
+                    <option value="Xocalı">
+                    <option value="Xocavənd">
+                    <option value="İmişli">
+                    <option value="İsmayıllı">
+                    <option value="Kəlbəcər">
+                    <option value="Kürdəmir">
+                    <option value="Qax">
+                    <option value="Qazax">
+                    <option value="Qobustan">
+                    <option value="Quba">
+                    <option value="Qubadlı">
+                    <option value="Qusar">
+                    <option value="Laçın">
+                    <option value="Lerik">
+                    <option value="Masallı">
+                    <option value="Neftçala">
+                    <option value="Oğuz">
+                    <option value="Ordubad">
+                    <option value="Saatlı">
+                    <option value="Sabirabad">
+                    <option value="Salyan">
+                    <option value="Samux">
+                    <option value="Sədərək">
+                    <option value="Siyəzən">
+                    <option value="Şahbuz">
+                    <option value="Şabran">
+                    <option value="Şamaxı">
+                    <option value="Şəmkir">
+                    <option value="Şərur">
+                    <option value="Şuşa">
+                    <option value="Tərtər">
+                    <option value="Tovuz">
+                    <option value="Ucar">
+                    <option value="Yardımlı">
+                    <option value="Zaqatala">
+                    <option value="Zəngilan">
+                    <option value="Zərdab">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label for="address">Tam Ünvan (Küçə, Ev, Mənzil)</label>
+                <input type="text" id="address" name="address" placeholder="Məs: Mətbuat pr. 25, mənzil 10">
+            </div>
+            <div class="form-group">
+                <label for="social">Sosial Media (LinkedIn/GitHub)</label>
+                <input type="text" id="social" name="social" placeholder="linkedin.com/in/username">
+            </div>
+
+            <!-- Standart: Haqqında -->
+            <div class="form-group full-width">
+                <label for="bio">Haqqında (Qısa məlumat)</label>
+                <textarea id="bio" name="bio" placeholder="Özünüz barədə bir neçə kəlmə yazın..."></textarea>
+            </div>
+
+            <!-- Standart: Fayl Yükləmə -->
+            <div class="form-group full-width">
+                <label for="profile-pic">Profil Şəkli</label>
+                <input type="file" id="profile-pic" name="profile-pic" accept="image/*">
+            </div>
+
+            <!-- Standart: Razılıq -->
+            <div class="form-group full-width">
+                <label class="radio-option">
+                    <input type="checkbox" required style="width: 18px; height: 18px; accent-color: var(--primary);"> Şərtlər və Qaydalar ilə razıyam
+                </label>
+            </div>
+
+            <!-- Actions -->
+            <div class="actions full-width">
+                <button type="submit" class="btn-primary">Qeydiyyatdan Keç</button>
+                <button type="reset" class="btn-secondary">Sıfırla</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const profileInput = document.getElementById('profile-pic');
+        const previewImg = document.getElementById('preview-img');
+        const placeholderIcon = document.getElementById('placeholder-icon');
+
+        profileInput.onchange = evt => {
+            const [file] = profileInput.files;
+            if (file) {
+                previewImg.src = URL.createObjectURL(file);
+                previewImg.style.display = 'block';
+                placeholderIcon.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
